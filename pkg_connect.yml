@@ -1,0 +1,6 @@
+- name: inspect packages
+  hosts: all
+  tasks:
+    - name: return number of Red Hat packages
+      shell: rpm -qa --qf "%{DSAHEADER:pgpsig}|%{RSAHEADER:pgpsig}|%{SIGGPG:pgpsig}|%{SIGPGP:pgpsig}\n" 2> /dev/null | grep 'Key ID 199e2f91fd431d51\|Key ID 5326810137017186\|Key ID 45689c882fa658e0\|Key ID 219180cddb42a60e\|Key ID 7514f77d8366b0d9\|Key ID 45689c882fa658e0' | wc -l
+      ignore_errors: True

@@ -1,6 +1,5 @@
----
-- hosts: all
-  remote-user: root
+- name: inspect subscriptions 
+  hosts: all
   tasks:
     - name: return subscription consumed on system
       shell: subscription-manager list --consumed 2>/dev/null | grep -e '^SKU' -e '^Subscription Name' | sed -n -e 's/SKU\s*.\s*//p' -e 's/Subscription Name\s*.\s*//p'

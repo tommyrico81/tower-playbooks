@@ -1,7 +1,6 @@
-hosts: " {{ 192.168.56[1:20] | default('all') }} "
+hosts: 192.168.56.104
   gather_facts: no
   # update roles structure when we transition off ansible 2.3
   # https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
   roles:
-    - redhat_packages
     - subman

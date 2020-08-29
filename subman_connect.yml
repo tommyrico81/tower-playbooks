@@ -1,6 +1,7 @@
-name: gather internal_subman_consumed
-raw: subscription-manager list --consumed 2>/dev/null | grep -e '^SKU' -e '^Subscription Name' | sed -n -e 's/SKU\s*.\s*//p' -e 's/Subscription Name\s*.\s*//p' 
-register: internal_subman_consumed
-ignore_errors: yes
-become: yes
-when: 'user_has_sudo and internal_have_subscription_manager'
+---
+- hosts: all
+  remote-user: root
+  tasks:
+    - name: return subscription consumed on system
+      shell: subscription-manager list --consumed 2>/dev/null | grep -e '^SKU' -e '^Subscription Name' | sed -n -e 's/SKU\s*.\s*//p' -e 's/Subscription Name\s*.\s*//p'
+      ignore_errors: True

@@ -1,6 +1,3 @@
-hosts: 192.168.56.104
-
-# subman_consumed fact
 name: gather internal_subman_consumed
 raw: subscription-manager list --consumed 2>/dev/null | grep -e '^SKU' -e '^Subscription Name' | sed -n -e 's/SKU\s*.\s*//p' -e 's/Subscription Name\s*.\s*//p' 
 register: internal_subman_consumed

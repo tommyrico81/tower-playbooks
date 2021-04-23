@@ -1,0 +1,20 @@
+- name: count RH packages
+  hosts: all
+  tasks:
+    - name: return number of Red Hat packages
+      shell: rpm -qa --qf "%{DSAHEADER:pgpsig}|%{RSAHEADER:pgpsig}|%{SIGGPG:pgpsig}|%{SIGPGP:pgpsig}\n" 2> /dev/null | grep 'Key ID 199e2f91fd431d51\|Key ID 5326810137017186\|Key ID 45689c882fa658e0\|Key ID 219180cddb42a60e\|Key ID 7514f77d8366b0d9\|Key ID 45689c882fa658e0' | wc -l
+      ignore_errors: True
+
+- name: return RH product certs
+  hosts: all
+  tasks:
+    - name: return product certificates on system
+      shell:  ls /etc/pki/product/ /etc/pki/product-default/ 2> /dev/null |grep '.pem' | sort -u | tr '\n' ';'   
+      ignore_errors: True
+
+- name: CPU count
+  hosts: all
+  tasks:
+    - name: return cpu count
+      shell: cat /proc/cpuinfo 2>/dev/null | grep '^processor\s*.' | wc -l      
+      ignore_errors: True

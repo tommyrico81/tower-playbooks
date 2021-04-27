@@ -18,3 +18,16 @@
     - name: return cpu count
       shell: cat /proc/cpuinfo 2>/dev/null | grep '^processor\s*.' | wc -l      
       ignore_errors: True
+
+- name: CPU Socket Count
+  hosts: all
+  tasks:
+    - name: return cpu socket count
+      shell: cat /proc/cpuinfo 2>/dev/null | grep 'physical id' | sort -u | wc -l
+      ignore_errors: True
+
+- name: Kernel Build Host Info
+  hosts: all
+  tasks:
+    - name: return kernel buildhost info
+      shell: rpm -qa --qf "%{NAME}|%{VERSION}|%{RELEASE}|%{VENDOR}|%{BUILDHOST}|%{SOURCERPM}|%{LICENSE}|%{INSTALLTIME:date}|%{BUILDTIME:date}\n" | grep "kernel" | tail -1 

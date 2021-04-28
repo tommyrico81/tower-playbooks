@@ -1,5 +1,5 @@
 - name: Capture installed package information for Linux hosts
-  hosts: linux
+  hosts: all
 
   tasks:
   - name: Get the package facts from hosts

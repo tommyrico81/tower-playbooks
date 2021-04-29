@@ -5,6 +5,7 @@
   - name: Get the package facts from hosts
     package_facts:
       manager: auto
+      name: "{{ dir }}"
 
   - name: Display output
     debug:

@@ -1,5 +1,6 @@
 - name: Capture installed package information for Linux hosts
   hosts: all
+  become: true
   vars:
   - dir:
 

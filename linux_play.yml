@@ -1,5 +1,7 @@
 - name: Capture installed package information for Linux hosts
   hosts: all
+  vars:
+  - dir:
 
   tasks:
   - name: Get the package facts from hosts

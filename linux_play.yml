@@ -11,8 +11,8 @@
       var: ansible_facts.packages
 
   - local_action:
-      file path="~/package_facts/" state=directory
+      file path="~/package_facts/{{ dir }}" state=directory
   - local_action:
       module: copy
       content: "{{ ansible_facts.packages }}"
-      dest: "~/package_facts/{{ inventory_hostname }}.json"
+      dest: "~/package_facts/{{ dir }}/{{ inventory_hostname }}.json"

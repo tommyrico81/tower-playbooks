@@ -1,0 +1,13 @@
+- name: Capture installed package information for Linux hosts
+  hosts: all
+
+  tasks:
+  - name: Get the package facts from hosts
+    package_facts:
+      manager: auto
+
+  - name: Display output
+    debug:
+      var: ansible_facts.packages
+
+ 
